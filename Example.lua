@@ -131,7 +131,7 @@ end
 local GuiName = "CFAHubPremium2022"
 
 function CFAHub:CreateWindow(title, gameName, intro)
-    title = title or "<font color=\"#bb0797ff\">CFA Hub Premium</font>"
+    title = title or "<font color=\"#4fc3f7\">CFA Hub Premium</font>"
     gameName = gameName or "N/A"
 
     for _, v in pairs(CoreGui:GetChildren()) do
