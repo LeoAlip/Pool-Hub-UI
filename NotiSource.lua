@@ -146,8 +146,8 @@ function NGuiHub:CreateWindow(title, gameName)
 		
 		Message.Name = "MessageLabel"
 		Message.AnchorPoint = Vector2.new(0.5, 0.5)
-		Message.Size = UDim2.new(0.95, 0, 0.775, 0)
-		Message.Position = UDim2.new(0.5, 0, 0.625, 0)
+		Message.Size = UDim2.new(0.85, 0, 0.675, 0)
+		Message.Position = UDim2.new(0.5, 0, 0.615, 0)
 		Message.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Message.BackgroundTransparency = 1
 		Message.Text = message
