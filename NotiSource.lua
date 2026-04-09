@@ -23,7 +23,7 @@ local notifiedCache = {}
 
 local GuiName = "NotificationHub"
 
-function NGuiHub:CreateWindow(title, gameName)
+function NGuiHub:CreateWindow(title)
 
 	for _, v in pairs(CoreGui:GetChildren()) do
 		if v:IsA("ScreenGui") and v.Name == GuiName then
@@ -47,40 +47,13 @@ function NGuiHub:CreateWindow(title, gameName)
 	Gui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 	Gui.Parent = CoreGui
 
-	local Frame = Instance.new("Frame")
-	local Header = Instance.new("Frame")
-	local slice = Instance.new("Frame")
-	local Title = Instance.new("TextLabel")
-	local GameName = Instance.new("TextLabel")
-	local Message = Instance.new("TextLabel")
-	local CloseButton = Instance.new("TextButton")
-
-	local UICorner1 = Instance.new("UICorner")
-
-	local UIStroke1 = Instance.new("UIStroke")
-
-	GameName.Name = "GameNameLabel"
-	GameName.AnchorPoint = Vector2.new(0.5, 0.5)
-	GameName.Size = UDim2.new(0, 75, 0, 45)
-	GameName.Position = UDim2.new(0.45, 0, 0.5, 0)
-	GameName.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	GameName.BackgroundTransparency = 1
-	GameName.Text = gameName
-	GameName.RichText = true
-	GameName.TextColor3 = themes.TextColor
-	GameName.Font = Enum.Font.SourceSansSemibold
-	GameName.TextSize = 22.000
-	GameName.ZIndex = 2
-	GameName.TextXAlignment = Enum.TextXAlignment.Left
-	GameName.Parent = Header
-
 	function NGuiHub:SetTheme(theme, color)
 		themes[theme] = color
 	end
 
 	local window = {}
 
-	function window:AddNoti(title, message, notifyOnce, duration, callback, id)
+	function window:AddNoti(title, gameName, message, notifyOnce, duration, callback, id)
 		
 		callback = callback or function() end
 		duration = duration or 3
@@ -94,7 +67,21 @@ function NGuiHub:CreateWindow(title, gameName)
 			return
 		end
 
-		notifiedCache[id] = true
+		if notifyOnce then
+        	notifiedCache[id] = true
+    	end
+
+		local Frame = Instance.new("Frame")
+		 Header = Instance.new("Frame")
+		 slice = Instance.new("Frame")
+		local Title = Instance.new("TextLabel")
+		local GameName = Instance.new("TextLabel")
+		local Message = Instance.new("TextLabel")
+		local CloseButton = Instance.new("TextButton")
+
+		local UICorner1 = Instance.new("UICorner")
+
+		local UIStroke1 = Instance.new("UIStroke")
 		
 		Frame.Name = "NotiFrame"
 		Frame.Size = UDim2.new(0, 350, 0, 125)
@@ -147,6 +134,21 @@ function NGuiHub:CreateWindow(title, gameName)
 		Title.ZIndex = 2
 		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Header
+
+		GameName.Name = "GameNameLabel"
+		GameName.AnchorPoint = Vector2.new(0.5, 0.5)
+		GameName.Size = UDim2.new(0, 75, 0, 45)
+		GameName.Position = UDim2.new(0.45, 0, 0.5, 0)
+		GameName.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		GameName.BackgroundTransparency = 1
+		GameName.Text = gameName
+		GameName.RichText = true
+		GameName.TextColor3 = themes.TextColor
+		GameName.Font = Enum.Font.SourceSansSemibold
+		GameName.TextSize = 22.000
+		GameName.ZIndex = 2
+		GameName.TextXAlignment = Enum.TextXAlignment.Left
+		GameName.Parent = Header
 		
 		Message.Name = "MessageLabel"
 		Message.AnchorPoint = Vector2.new(0.5, 0.5)
