@@ -87,7 +87,7 @@ function NGuiHub:CreateWindow(title, gameName)
 		notifiedCache[id] = true
 		
 		Frame.Name = "NotiFrame"
-		Frame.Size = UDim2.new(0, 100, 0, 50)
+		Frame.Size = UDim2.new(0, 350, 0, 115)
 		Frame.Position = UDim2.new(1.2, 0, 0.9, 0)
 		Frame.BackgroundColor3 = themes.FrameColor
 		Frame.BackgroundTransparency = 0
@@ -153,7 +153,7 @@ function NGuiHub:CreateWindow(title, gameName)
 			Frame,
 			TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
 			{
-				Position = UDim2.new(0.9, 0, 0.9, 0)
+				Position = UDim2.new(0.705, 0, 0.775, 0)
 			}
 		)
 		
