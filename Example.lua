@@ -590,26 +590,6 @@ function CFAHub:CreateWindow(title, gameName, intro)
     Title.TextWrapped = true
     Title.TextXAlignment = Enum.TextXAlignment.Left
 
-    CloseButton.Name = "CloseButton"
-    CloseButton.Parent = Header
-    CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-    CloseButton.BackgroundTransparency = 1
-    CloseButton.Position = UDim2.new(0.9, 0, 0, 0)
-    CloseButton.Size = UDim2.new(0, 29, 0, 29)
-    CloseButton.ZIndex = 2
-    CloseButton.Font = Enum.Font.SourceSansSemibold
-    CloseButton.Text = "X"
-    CloseButton.RichText = true
-    CloseButton.TextColor3 = themes.TextColor
-    Objects[CloseButton] = "TextColor"
-    CloseButton.TextSize = 22.000
-    CloseButton.TextWrapped = true
-    CloseButton.TextXAlignment = Enum.TextXAlignment.Center
-    
-    CloseButton.MouseButton1Click:Connect(function()
-        Container:Destroy()
-    end)
-
     TabFrame.Name = "TabFrame"
     TabFrame.Parent = Container
     TabFrame.AnchorPoint = Vector2.new(0, 0.5)
