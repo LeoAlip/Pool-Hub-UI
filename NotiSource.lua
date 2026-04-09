@@ -43,8 +43,8 @@ function NGuiHub:CreateWindow(title, gameName)
 	Gui.Name = GuiName
 	Gui.DisplayOrder = 9999
 	Gui.IgnoreGuiInset = true
-	Gui.ResetOnRespawn = false
-	Gui.ZindexBehavior = Enum.ZIndexBehavior.Global
+	Gui.ResetOnSpawn = false
+	Gui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 	Gui.Parent = CoreGui
 
 	local Frame = Instance.new("Frame")
