@@ -41,7 +41,7 @@ function NGuiHub:CreateWindow(title, gameName)
 	}
 
 	Gui.Name = GuiName
-	Gui.Display = 9999
+	Gui.DisplayOrder = 9999
 	Gui.IgnoreGuiInset = true
 	Gui.ResetOnRespawn = false
 	Gui.ZindexBehavior = Enum.ZIndexBehavior.Global
