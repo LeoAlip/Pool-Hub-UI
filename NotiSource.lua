@@ -175,10 +175,11 @@ function NGuiHub:CreateWindow(title, gameName)
 		TweenOut:Play()
 
 		TweenOut.Completed:Connect(function()
-			Frame.Visible = false
+			Frame:Destroy()
 			callback()
 		end)
 	end
 	return window
 end
+
 return NGuiHub
