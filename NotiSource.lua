@@ -23,7 +23,7 @@ local notifiedCache = {}
 
 local GuiName = "NotificationHub"
 
-function NGuiHub:CreateWindow()
+function NGuiHub:CreateWindow(title, gameName)
 
 	for _, v in pairs(CoreGui:GetChildren()) do
 		if v:IsA("ScreenGui") and v.Name == GuiName then
@@ -47,7 +47,30 @@ function NGuiHub:CreateWindow()
 	Gui.ZindexBehavior = Enum.ZIndexBehavior.Global
 	Gui.Parent = CoreGui
 
-	function NGuiHub:AddNoti(title, message, notifyOnce, duration, callback, id)
+	local Frame = Instance.new("Frame")
+	local Header = Instance.new("Frame")
+	local Title = Instance.new("TextLabel")
+	local GameName = Instance.new("TextLabel")
+	local Message = Instance.new("TextLabel")
+	local CloseButton = Instance.new("TextButton")
+
+	GameName.Name = "GameNameLabel"
+	GameName.AnchorPoint = Vector2.new(0.5, 0.5)
+	GameName.Size = UDim2.new(0, 75, 0, 45)
+	GameName.Position = UDim2.new(0.35, 0, 0.2, 0)
+	GameName.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	GameName.BackgroundTransparency = 1
+	GameName.Text = gameName
+	GameName.RichText = true
+	GameName.TextColor3 = themes.TextColor
+	GameName.Font = Enum.Font.SourceSansSemibold
+	GameName.TextSize = 22.000
+	GameName.ZIndex = 2
+	GameName.Parent = Header
+
+	local window = {}
+
+	function window:AddNoti(title, message, notifyOnce, duration, callback, id)
 		
 		callback = callback or function() end
 		duration = duration or 3
@@ -63,7 +86,6 @@ function NGuiHub:CreateWindow()
 
 		notifiedCache[id] = true
 		
-		local Frame = Instance.new("Frame")
 		Frame.Name = "NotiFrame"
 		Frame.Size = UDim2.new(0, 100, 0, 50)
 		Frame.Position = UDim2.new(1.2, 0, 0.9, 0)
@@ -72,7 +94,6 @@ function NGuiHub:CreateWindow()
 		Frame.Visible = false
 		Frame.Parent = Gui
 
-		local Header = Instance.new("Frame")
 		Header.Name = "NotiHeader"
 		Header.AnchorPoint = Vector2.new(0.5, 0.5)
 		Header.Size = UDim2.new(1, 0, 0, 50)
@@ -80,23 +101,22 @@ function NGuiHub:CreateWindow()
 		Header.BackgroundColor3 = themes.FrameColor
 		Header.BackgroundTransparency = 1
 		Header.Visible = true
-		Header.Parent = Gui
+		Header.Parent = Frame
 
-		local Title = Instance.new("TextLabel")
 		Title.Name = "TitleLabel"
 		Title.AnchorPoint = Vector2.new(0.5, 0.5)
-		Title.Size = UDim2.new(0, 45, 0, 45)
+		Title.Size = UDim2.new(0, 100, 0, 45)
 		Title.Position = UDim2.new(0.15, 0, 0.2, 0)
 		Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BackgroundTransparency = 1
 		Title.Text = title
 		Title.RichText = true
+		Title.TextColor3 = themes.TextColor
 		Title.Font = Enum.Font.SourceSansSemibold
 		Title.TextSize = 22.000
 		Title.ZIndex = 2
 		Title.Parent = Header
 		
-		local Message = Instance.new("TextLabel")
 		Message.Name = "MessageLabel"
 		Message.AnchorPoint = Vector2.new(0.5, 0.5)
 		Message.Size = UDim2.new(1, 0, 0.8, 0)
@@ -105,45 +125,61 @@ function NGuiHub:CreateWindow()
 		Message.BackgroundTransparency = 1
 		Message.Text = message
 		Message.RichText = true
+		Message.TextColor3 = themes.TextColor
 		Message.Font = Enum.Font.SourceSansSemibold
 		Message.TextSize = 22.000
 		Message.ZIndex = 2
 		Message.Parent = Frame
 		
-		local CloseButton = Instance.new("TextButton")
 		CloseButton.Name = "CloseButton"
 		CloseButton.AnchorPoint = Vector2.new(0.5, 0.5)
 		CloseButton.Size = UDim2.new(0, 45, 0, 45)
-		CloseButton.Position = UDim2.new(0.9, 0, 0.2, 0)
+		CloseButton.Position = UDim2.new(0.9, 0, 0.5, 0)
 		CloseButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		CloseButton.BackgroundTransparency = 1
 		CloseButton.Text = "X"
+		CloseButton.RichText = true
+		CloseButton.TextColor3 = themes.TextColor
 		CloseButton.Font = Enum.Font.SourceSansSemibold
 		CloseButton.TextSize = 22.000
 		CloseButton.ZIndex = 2
 		CloseButton.Parent = Header
+
+		CloseButton.MouseButton1Click:Connect(function()
+			Frame.Visible = false
+		end)
 		
 		local TweenIn = Tween:Create(
 			Frame,
 			TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
-			{Position = UDim2.new(0.9, 0, 0.9, 0)}
+			{
+				Position = UDim2.new(0.9, 0, 0.9, 0)
+			}
 		)
 		
 		local TweenOut = Tween:Create(
 			Frame,
 			TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
-			{BackgroundTransparency = 1}
+			{
+				Position = UDim2.new(1.2, 0, 0.9, 0), 
+				BackgroundTransparency = 1
+			}
 		)
 		
+		Frame.Visible = true
+		wait(0.1)
 		TweenIn:Play()
 
 		task.wait(duration)
-
+		
 		TweenOut:Play()
 
 		TweenOut.Completed:Connect(function()
-			Frame:Destroy()
+			Frame.Visible = false
 			callback()
 		end)
 	end
+	return window
 end
+
+return NGuiHub
