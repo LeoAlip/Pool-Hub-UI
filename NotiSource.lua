@@ -57,7 +57,7 @@ function NGuiHub:CreateWindow(title, gameName)
 	GameName.Name = "GameNameLabel"
 	GameName.AnchorPoint = Vector2.new(0.5, 0.5)
 	GameName.Size = UDim2.new(0, 75, 0, 45)
-	GameName.Position = UDim2.new(0.35, 0, 0.2, 0)
+	GameName.Position = UDim2.new(0.45, 0, 0.2, 0)
 	GameName.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	GameName.BackgroundTransparency = 1
 	GameName.Text = gameName
@@ -66,6 +66,7 @@ function NGuiHub:CreateWindow(title, gameName)
 	GameName.Font = Enum.Font.SourceSansSemibold
 	GameName.TextSize = 22.000
 	GameName.ZIndex = 2
+	GameName.TextXAlignment = Enum.TextXAlignment.Left
 	GameName.Parent = Header
 
 	local window = {}
@@ -115,6 +116,7 @@ function NGuiHub:CreateWindow(title, gameName)
 		Title.Font = Enum.Font.SourceSansSemibold
 		Title.TextSize = 22.000
 		Title.ZIndex = 2
+		Title.TextXAlignment = Enum.TextXAlignment.Left
 		Title.Parent = Header
 		
 		Message.Name = "MessageLabel"
@@ -129,6 +131,7 @@ function NGuiHub:CreateWindow(title, gameName)
 		Message.Font = Enum.Font.SourceSansSemibold
 		Message.TextSize = 22.000
 		Message.ZIndex = 2
+		Message.TextXAlignment = Enum.TextXAlignment.Left
 		Message.Parent = Frame
 		
 		CloseButton.Name = "CloseButton"
@@ -143,6 +146,7 @@ function NGuiHub:CreateWindow(title, gameName)
 		CloseButton.Font = Enum.Font.SourceSansSemibold
 		CloseButton.TextSize = 22.000
 		CloseButton.ZIndex = 2
+		CloseButton.TextXAlignment = Enum.TextXAlignment.Center
 		CloseButton.Parent = Header
 
 		CloseButton.MouseButton1Click:Connect(function()
@@ -153,7 +157,7 @@ function NGuiHub:CreateWindow(title, gameName)
 			Frame,
 			TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
 			{
-				Position = UDim2.new(0.705, 0, 0.775, 0)
+				Position = UDim2.new(0.9, 0, 0.9, 0)
 			}
 		)
 		
