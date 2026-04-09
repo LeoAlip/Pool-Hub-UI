@@ -72,14 +72,15 @@ function NGuiHub:CreateWindow(title)
     	end
 
 		local Frame = Instance.new("Frame")
-		 Header = Instance.new("Frame")
-		 slice = Instance.new("Frame")
+		local Header = Instance.new("Frame")
+		local slice = Instance.new("Frame")
 		local Title = Instance.new("TextLabel")
 		local GameName = Instance.new("TextLabel")
 		local Message = Instance.new("TextLabel")
 		local CloseButton = Instance.new("TextButton")
 
 		local UICorner1 = Instance.new("UICorner")
+		local UICorner2 = Instance.new("UICorner")
 
 		local UIStroke1 = Instance.new("UIStroke")
 		
@@ -94,6 +95,10 @@ function NGuiHub:CreateWindow(title)
 		UICorner1.Name = "UICorner1"
 		UICorner1.CornerRadius = UDim.new(0, 12.5)
 		UICorner1.Parent = Frame
+
+		UICorner2.Name = "UICorner2"
+		UICorner2.CornerRadius = UDim.new(0, 13)
+		UICorner2.Parent = slice
 
 		UIStroke1.Name = "UIStroke1"
 		UIStroke1.ApplyStrokeMode = "Border"
