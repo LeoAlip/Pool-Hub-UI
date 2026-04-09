@@ -101,7 +101,7 @@ function NGuiHub:CreateWindow(title, gameName)
 		Frame.Parent = Gui
 
 		UICorner1.Name = "UICorner1"
-		UICorner1.CornerRadius = Vector2.new(0, 12.5)
+		UICorner1.CornerRadius = UDim.new(0, 12.5)
 		UICorner1.Parent = Frame
 
 		UIStroke1.Name = "UIStroke1"
