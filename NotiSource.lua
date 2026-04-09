@@ -96,7 +96,7 @@ function NGuiHub:CreateWindow(title, gameName)
 		Frame.Size = UDim2.new(0, 350, 0, 125)
 		Frame.Position = UDim2.new(1.05, 0, 0.85, 0)
 		Frame.BackgroundColor3 = themes.FrameColor
-		Frame.BackgroundTransparency = 0.05
+		Frame.BackgroundTransparency = 0.15
 		Frame.Visible = false
 		Frame.Parent = Gui
 
@@ -190,7 +190,7 @@ function NGuiHub:CreateWindow(title, gameName)
 			Frame,
 			TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 			{
-				Position = UDim2.new(1.2, 0, 0.9, 0), 
+				Position = UDim2.new(1.05, 0, 0.85, 0), 
 				BackgroundTransparency = 1
 			}
 		)
