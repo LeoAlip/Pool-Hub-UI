@@ -74,6 +74,10 @@ function NGuiHub:CreateWindow(title, gameName)
 	GameName.TextXAlignment = Enum.TextXAlignment.Left
 	GameName.Parent = Header
 
+	function NGuiHub:SetTheme(theme, color)
+		themes[theme] = color
+	end
+
 	local window = {}
 
 	function window:AddNoti(title, message, notifyOnce, duration, callback, id)
