@@ -151,7 +151,7 @@ function NGuiHub:CreateWindow(title, gameName)
 		
 		local TweenIn = Tween:Create(
 			Frame,
-			TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
+			TweenInfo.new(0.7, Enum.EasingStyle.Quad, Enum.EasingDirection.In),
 			{
 				Position = UDim2.new(0.9, 0, 0.9, 0)
 			}
@@ -159,7 +159,7 @@ function NGuiHub:CreateWindow(title, gameName)
 		
 		local TweenOut = Tween:Create(
 			Frame,
-			TweenInfo.new(duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
 			{
 				Position = UDim2.new(1.2, 0, 0.9, 0), 
 				BackgroundTransparency = 1
@@ -181,5 +181,4 @@ function NGuiHub:CreateWindow(title, gameName)
 	end
 	return window
 end
-
 return NGuiHub
