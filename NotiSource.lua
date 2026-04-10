@@ -40,7 +40,7 @@ function NGuiHub:CreateWindow(title)
 		FrameColor = Color3.fromRGB(34, 34, 34)
 	}
 
-	Gui.Name = GuiName
+	Gui.Name = title or "NotificationHub"
 	Gui.DisplayOrder = 9999
 	Gui.IgnoreGuiInset = true
 	Gui.ResetOnSpawn = false
@@ -85,7 +85,7 @@ function NGuiHub:CreateWindow(title)
 		local UIStroke1 = Instance.new("UIStroke")
 		
 		Frame.Name = "NotiFrame"
-		Frame.Size = UDim2.new(0, 350, 0, 125)
+		Frame.Size = UDim2.new(0, 300, 0, 100)
 		Frame.Position = UDim2.new(1.05, 0, 0.85, 0)
 		Frame.BackgroundColor3 = themes.FrameColor
 		Frame.BackgroundTransparency = 0.15
@@ -157,7 +157,7 @@ function NGuiHub:CreateWindow(title)
 		
 		Message.Name = "MessageLabel"
 		Message.AnchorPoint = Vector2.new(0.5, 0.5)
-		Message.Size = UDim2.new(0.85, 0, 0.675, 0)
+		Message.Size = UDim2.new(0.8, 0, 0.65, 0)
 		Message.Position = UDim2.new(0.5, 0, 0.615, 0)
 		Message.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Message.BackgroundTransparency = 1
