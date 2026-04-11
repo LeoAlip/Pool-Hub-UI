@@ -1483,7 +1483,9 @@ function CFAHub:CreateWindow(title, gameName, intro)
                 SliderCorner.Parent = Slider
 
                 SliderPercent.Size = UDim2.new(((DefaultValue or 0) / Max_Value),0, 1, 0)
-                SilderNumber.Text = tostring(DefaultValue and math.floor((DefaultValue / Max_Value) * (Max_Value - Min_Value) + Min_Value) or 0)
+                local _rawDefault = DefaultValue and (DefaultValue / Max_Value) * (Max_Value - Min_Value) + Min_Value or 0
+                local _isDecimal = (Max_Value - Min_Value) <= 1
+                SilderNumber.Text = tostring(_isDecimal and math.floor(_rawDefault * 100) / 100 or math.floor(_rawDefault))
                 pcall(callback, DefaultValue)
 
                 coroutine.wrap(function()
@@ -1506,9 +1508,11 @@ function CFAHub:CreateWindow(title, gameName, intro)
 							0
 						)
                     Utility:TweenObject(SliderPercent, {Size = pos}, 0.25)
-					local value = math.floor(((pos.X.Scale * Max_Value) / Max_Value) * (Max_Value - Min_Value) + Min_Value)
-					SilderNumber.Text = tostring(value)
-					pcall(callback, value)
+					local rawValue = ((pos.X.Scale * Max_Value) / Max_Value) * (Max_Value - Min_Value) + Min_Value
+                    local isDecimal = (Max_Value - Min_Value) <= 1
+                    local value = isDecimal and math.floor(rawValue * 100) / 100 or math.floor(rawValue)
+                    SilderNumber.Text = tostring(value)
+                    pcall(callback, value)
 				end
 
                 SliderDrag.InputBegan:Connect(function(input)
@@ -1535,7 +1539,9 @@ function CFAHub:CreateWindow(title, gameName, intro)
 
                 function SliderElements:Change(tochange)
                     SliderPercent.Size = UDim2.new(((tochange or 0) / Max_Value), 0, 1, 0)
-					SilderNumber.Text = tostring(tochange and math.floor((tochange / Max_Value) * (Max_Value - Min_Value) + Min_Value) or 0)
+					local _rawChange = tochange and (tochange / Max_Value) * (Max_Value - Min_Value) + Min_Value or 0
+                    local _isDecimal = (Max_Value - Min_Value) <= 1
+                    SilderNumber.Text = tostring(_isDecimal and math.floor(_rawChange * 100) / 100 or math.floor(_rawChange))
 					pcall(callback, tochange)
 				end
 
@@ -1735,19 +1741,13 @@ function CFAHub:CreateWindow(title, gameName, intro)
                         if WhitelistedType[i.UserInputType] then
                             Utility:Pop(KeyCode, 10)
                             BindKeyCode.Text = WhitelistedType[i.UserInputType];
-                            spawn(function()
-                                wait(0.1)
-                                Default = i.UserInputType;
-                                Type = "UserInputType";
-                            end);
+                            Default = i.UserInputType;
+                            Type = "UserInputType";
                         elseif i.KeyCode ~= Enum.KeyCode.Unknown then
                             Utility:Pop(KeyCode, 10)
                             BindKeyCode.Text = tostring(i.KeyCode):gsub("Enum.KeyCode.", "");
-                            spawn(function()
-                                wait(0.1)
-                                Default = i.KeyCode;
-                                Type = "KeyCode";
-                            end);
+                            Default = i.KeyCode;
+                            Type = "KeyCode";
                         else
                             warn("Exception: " .. i.UserInputType .. " " .. i.KeyCode);
                         end;
