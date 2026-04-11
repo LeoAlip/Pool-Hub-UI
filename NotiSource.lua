@@ -119,7 +119,7 @@ function NGuiHub:CreateWindow(title)
 		slice.Name = "slice"
 		slice.AnchorPoint = Vector2.new(0.5, 0.5)
 		slice.Size = UDim2.new(0.96, 0, 0, 5)
-		slice.Position = UDim2.new(0.5, 0, 1, 0)
+		slice.Position = UDim2.new(0.5, 0, 0.9, 0)
 		slice.BackgroundColor3 = themes.BackgroundColor
 		slice.BackgroundTransparency = 0
 		slice.Visible = true
@@ -128,7 +128,7 @@ function NGuiHub:CreateWindow(title)
 		Title.Name = "TitleLabel"
 		Title.AnchorPoint = Vector2.new(0.5, 0.5)
 		Title.Size = UDim2.new(0, 100, 0, 45)
-		Title.Position = UDim2.new(0.175, 0, 0.5, 0)
+		Title.Position = UDim2.new(0.205, 0, 0.575, 0)
 		Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Title.BackgroundTransparency = 1
 		Title.Text = title
@@ -143,7 +143,7 @@ function NGuiHub:CreateWindow(title)
 		GameName.Name = "GameNameLabel"
 		GameName.AnchorPoint = Vector2.new(0.5, 0.5)
 		GameName.Size = UDim2.new(0, 75, 0, 45)
-		GameName.Position = UDim2.new(0.45, 0, 0.5, 0)
+		GameName.Position = UDim2.new(0.45, 0, 0.575, 0)
 		GameName.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		GameName.BackgroundTransparency = 1
 		GameName.Text = gameName
@@ -158,7 +158,7 @@ function NGuiHub:CreateWindow(title)
 		Message.Name = "MessageLabel"
 		Message.AnchorPoint = Vector2.new(0.5, 0.5)
 		Message.Size = UDim2.new(0.8, 0, 0.6, 0)
-		Message.Position = UDim2.new(0.5, 0, 0.6, 0)
+		Message.Position = UDim2.new(0.5, 0, 0.665, 0)
 		Message.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 		Message.BackgroundTransparency = 1
 		Message.Text = message
