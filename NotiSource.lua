@@ -10,7 +10,6 @@ repeat wait() until game.Players.LocalPlayer.Character:FindFirstChild("HumanoidR
 warn("UI Loaded")
 
 local Tween = game:GetService("TweenService")
-local TweenInfo = TweenInfo.new
 local Input = game:GetService("UserInputService")
 local Run = game:GetService("RunService")
 local Players = game:GetService("Players")
