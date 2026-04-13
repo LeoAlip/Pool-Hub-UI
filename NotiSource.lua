@@ -46,18 +46,14 @@ function NGuiHub:CreateWindow(title)
 	Gui.ZIndexBehavior    = Enum.ZIndexBehavior.Global
 	Gui.Parent            = CoreGui
 
-	-- Queue: each entry = { frame = Frame, height = number }
 	local activeNotifications = {}
 
-	local GAP = 5        -- px gap between stacked notifications
-	local BASE_Y = 0.85  -- UDim2 Y scale for the bottom notification
+	local GAP = 15
+	local BASE_Y = 0.85
 
-	-- Recalculates and tweens every active notification to its correct position.
-	-- Notifications stack upward from BASE_Y, with GAP px between each.
 	local function repositionAll()
-		local offsetY = 0  -- accumulated pixel offset upward from BASE_Y
+		local offsetY = 0
 
-		-- Iterate from newest (top of stack) to oldest (bottom)
 		for i = #activeNotifications, 1, -1 do
 			local entry = activeNotifications[i]
 			local targetPos = UDim2.new(0.775, 0, BASE_Y, -offsetY)
@@ -90,7 +86,6 @@ function NGuiHub:CreateWindow(title)
 		if notifyOnce and notifiedCache[id] then return end
 		if notifyOnce then notifiedCache[id] = true end
 
-		-- Build UI instances
 		local Frame       = Instance.new("Frame")
 		local Header      = Instance.new("Frame")
 		local slice       = Instance.new("Frame")
@@ -102,11 +97,10 @@ function NGuiHub:CreateWindow(title)
 		local UICorner2   = Instance.new("UICorner")
 		local UIStroke1   = Instance.new("UIStroke")
 
-		local FRAME_HEIGHT = 100  -- must match Frame.Size.Y.Offset below
+		local FRAME_HEIGHT = 100
 
 		Frame.Name                  = "NotiFrame"
 		Frame.Size                  = UDim2.new(0, 300, 0, FRAME_HEIGHT)
-		-- Start off-screen to the right; repositionAll() will slide it in
 		Frame.Position              = UDim2.new(1.05, 0, BASE_Y, 0)
 		Frame.BackgroundColor3      = themes.FrameColor
 		Frame.BackgroundTransparency = 0.15
@@ -188,11 +182,9 @@ function NGuiHub:CreateWindow(title)
 		CloseButton.TextXAlignment       = Enum.TextXAlignment.Center
 		CloseButton.Parent               = Header
 
-		-- Track this notification in the queue
 		local entry = { frame = Frame, height = FRAME_HEIGHT }
-		table.insert(activeNotifications, 1, entry)  -- insert at front (newest = bottom)
+		table.insert(activeNotifications, 1, entry)
 
-		-- Shared teardown: slides out, destroys, removes from queue, repositions rest
 		local dismissed = false
 		local function dismiss()
 			if dismissed then return end
@@ -208,7 +200,6 @@ function NGuiHub:CreateWindow(title)
 			TweenOut.Completed:Connect(function()
 				Frame:Destroy()
 
-				-- Remove from active list
 				for i, e in ipairs(activeNotifications) do
 					if e == entry then
 						table.remove(activeNotifications, i)
@@ -223,11 +214,9 @@ function NGuiHub:CreateWindow(title)
 
 		CloseButton.MouseButton1Click:Connect(dismiss)
 
-		-- Slide in: show frame, push it in, then wait for auto-dismiss
 		Frame.Visible = true
 		wait(0.1)
 
-		-- Reposition all (including this new one) with slide-in tween
 		repositionAll()
 
 		task.delay(duration, dismiss)
