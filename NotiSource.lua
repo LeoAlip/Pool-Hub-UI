@@ -74,7 +74,7 @@ function NGuiHub:CreateWindow(title)
 
 	local window = {}
 
-	function window:AddNoti(title, gameName, message, notifyOnce, duration, callback, id)
+	function window:AddNoti(title, systemName, message, notifyOnce, duration, callback, id)
 
 		callback   = callback   or function() end
 		duration   = duration   or 3
@@ -90,7 +90,7 @@ function NGuiHub:CreateWindow(title)
 		local Header      = Instance.new("Frame")
 		local slice       = Instance.new("Frame")
 		local Title       = Instance.new("TextLabel")
-		local GameName    = Instance.new("TextLabel")
+		local SystemName  = Instance.new("TextLabel")
 		local Message     = Instance.new("TextLabel")
 		local CloseButton = Instance.new("TextButton")
 		local UICorner1   = Instance.new("UICorner")
@@ -144,18 +144,18 @@ function NGuiHub:CreateWindow(title)
 		Title.TextXAlignment       = Enum.TextXAlignment.Left
 		Title.Parent               = Header
 
-		GameName.AnchorPoint          = Vector2.new(0.5, 0.5)
-		GameName.Size                 = UDim2.new(0, 75, 0, 45)
-		GameName.Position             = UDim2.new(0.45, 0, 0.575, 0)
-		GameName.BackgroundTransparency = 1
-		GameName.Text                 = gameName
-		GameName.RichText             = true
-		GameName.TextColor3           = themes.TextColor
-		GameName.Font                 = Enum.Font.SourceSansSemibold
-		GameName.TextSize             = 22
-		GameName.ZIndex               = 2
-		GameName.TextXAlignment       = Enum.TextXAlignment.Left
-		GameName.Parent               = Header
+		SystemName.AnchorPoint          = Vector2.new(0.5, 0.5)
+		SystemName.Size                 = UDim2.new(0, 75, 0, 45)
+		SystemName.Position             = UDim2.new(0.55, 0, 0.575, 0)
+		SystemName.BackgroundTransparency = 1
+		SystemName.Text                 = systemName
+		SystemName.RichText             = true
+		SystemName.TextColor3           = themes.TextColor
+		SystemName.Font                 = Enum.Font.SourceSansSemibold
+		SystemName.TextSize             = 20
+		SystemName.ZIndex               = 2
+		SystemName.TextXAlignment       = Enum.TextXAlignment.Left
+		SystemName.Parent               = Header
 
 		Message.AnchorPoint          = Vector2.new(0.5, 0.5)
 		Message.Size                 = UDim2.new(0.8, 0, 0.6, 0)
@@ -177,7 +177,7 @@ function NGuiHub:CreateWindow(title)
 		CloseButton.Text                 = "X"
 		CloseButton.TextColor3           = themes.TextColor
 		CloseButton.Font                 = Enum.Font.SourceSansSemibold
-		CloseButton.TextSize             = 22
+		CloseButton.TextSize             = 20
 		CloseButton.ZIndex               = 2
 		CloseButton.TextXAlignment       = Enum.TextXAlignment.Center
 		CloseButton.Parent               = Header
